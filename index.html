@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Luke's Secret Agent&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>html, body { height: 100%; margin: 0; padding: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { display: flex; flex-direction: column; font-family: sans-serif; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.main-container { display: flex; flex: 1; flex-direction: row; gap: 1rem; padding: 1rem; width: 100%; max-width: 1200px; margin: 0 auto; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.sidebar { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; max-width: 300px; padding-right: 1rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.main-content { flex: 3; display: grid; gap: 1rem; align-content: start; padding: 0.5rem; border-radius: 0.75rem; background-color: #f3f4f6; border: 1px solid #d1d5db; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.main-container { flex-direction: column; gap: 1.5rem; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.sidebar { width: 100%; max-width: none; padding-right: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.main-content { min-height: 300px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pressable:active { transform: scale(0.97); filter: brightness(0.93); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.phrase-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center; padding: 0.75rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer; transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-user-select: none; user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.yes-no-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer; transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out; color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-user-select: none; user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; align-items: center; justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #e5e7eb; color: #374151;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500; cursor: pointer; transition: background-color 0.2s, color 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button .module-name { display: flex; align-items: center; gap: 0.5rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button:hover { background-color: #d1d5db; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button.active { background-color: #4a5568; color: #ffffff; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button .edit-icon { color: #6b7280; visibility: hidden; font-size: 1rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button:hover .edit-icon, .module-button.active .edit-icon { visibility: visible; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.module-button .edit-icon:hover { color: #1f2937; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.add-module-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.5rem; background-color: #3b82f6; color: white; font-weight: 500; cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s; margin-top: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.add-module-button:hover { background-color: #2563eb; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-content { background-color: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); width: 90%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-close-button { position: absolute; top: 0.75rem; right: 0.75rem; background: none; border: none; cursor: pointer; color: #9ca3af; font-size: 1.5rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-close-button:hover { color: #1f2937; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-input { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; margin-bottom: 1rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-phrase-input { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-phrase-input input[type="text"] { flex-grow: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-phrase-input input[type="color"] {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0; border: 1px solid #d1d5db; border-radius: 0.375rem; cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 2.5rem; height: 2.5rem; background-color: transparent; -webkit-appearance: none; appearance: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-phrase-input input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-phrase-input input[type="color"]::-webkit-color-swatch { border: none; border-radius: 0.25rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-phrase-input input[type="color"]::-moz-color-swatch { border: none; border-radius: 0.25rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-actions { display: flex; justify-content: space-between; margin-top: 1.5rem; border-top: 1px solid #e5e7eb; padding-top: 1rem; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-delete-button { background-color: #ef4444; color: white; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-delete-button:hover { background-color: #dc2626; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-save-button { background-color: #22c55e; color: white; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-save-button:hover { background-color: #16a34a; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-button { padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-white font-sans"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 pt-6 pb-4 md:pt-8 md:pb-6 px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Communication Aid</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="main-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;aside class="sidebar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-xl md:text-2xl font-semibold text-left text-gray-700 mb-2"&gt;Modules&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="module-list" class="flex flex-col gap-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="add-module-button" class="add-module-button pressable"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;+&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;Add New Module&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="main-content" class="main-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="col-span-full text-center text-gray-500 p-10"&gt;Loading phrases...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="message-box" class="fixed bottom-4 right-4 p-4 rounded-lg shadow-md hidden z-50 max-w-sm"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="edit-modal" class="modal-overlay hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="modal-close-button" class="modal-close-button"&gt;X&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 id="modal-title" class="text-2xl font-semibold mb-4"&gt;Edit Module&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="hidden" id="modal-module-index"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label for="modal-module-name" class="block text-sm font-medium text-gray-700 mb-1"&gt;Module Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="text" id="modal-module-name" class="modal-input" placeholder="Enter module name"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="block text-sm font-medium text-gray-700 mb-2 mt-4"&gt;Phrases &amp; Colors (up to 4)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="modal-phrases-container"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-actions"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="modal-delete-button" class="modal-button modal-delete-button pressable"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;Delete&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="modal-save-button" class="modal-button modal-save-button pressable"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;Save&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- DOM Elements ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const messageBox = document.getElementById('message-box');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const mainContent = document.getElementById('main-content');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const moduleListContainer = document.getElementById('module-list');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const addModuleButton = document.getElementById('add-module-button');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const editModal = document.getElementById('edit-modal');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalCloseButton = document.getElementById('modal-close-button');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalTitle = document.getElementById('modal-title');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalModuleIndexInput = document.getElementById('modal-module-index');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalModuleNameInput = document.getElementById('modal-module-name');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalPhrasesContainer = document.getElementById('modal-phrases-container');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalSaveButton = document.getElementById('modal-save-button');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const modalDeleteButton = document.getElementById('modal-delete-button');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- State Variables ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let synth = window.speechSynthesis;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let voices = [];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let isSpeechReady = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let isSpeakingAllowed = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let modules = [];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentModuleIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const localStorageKey = 'tbiCommAidModules_v2';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const defaultPhraseColor = '#3b82f6';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Default Modules ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const defaultModules = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Yes / No", isSpecial: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>name: "Basics", isSpecial: false, phrases: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "Help", color: "#f97316" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "Okay", color: "#14b8a6" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "Thank You", color: "#a855f7" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>name: "Greetings", isSpecial: false, phrases: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "Hello", color: "#3b82f6" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "Goodbye", color: "#6b7280" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "How are you?", color: "#6366f1" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- LocalStorage Functions ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function saveModulesToLocalStorage() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem(localStorageKey, JSON.stringify(modules));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("Modules saved to localStorage.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error saving modules:", e);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Could not save changes.", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function loadModulesFromLocalStorage() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const storedModules = localStorage.getItem(localStorageKey);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (storedModules) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>modules = JSON.parse(storedModules);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (!modules.length || !modules[0].isSpecial) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>console.warn("Invalid stored data. Resetting to defaults.");</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>modules = JSON.parse(JSON.stringify(defaultModules));</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>saveModulesToLocalStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log("No stored modules. Using defaults.");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>modules = JSON.parse(JSON.stringify(defaultModules));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveModulesToLocalStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error loading modules:", e);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Could not load saved modules. Using defaults.", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modules = JSON.parse(JSON.stringify(defaultModules));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentModuleIndex &gt;= modules.length) currentModuleIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Message Display Function ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showMessage(text, type = 'info', duration = 4000) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log(`[Message] ${type}: ${text}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageBox.textContent = text;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageBox.className = 'fixed bottom-4 right-4 p-4 rounded-lg shadow-md z-50 max-w-sm';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (type === 'error') messageBox.classList.add('bg-red-100', 'text-red-700');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>else if (type === 'success') messageBox.classList.add('bg-green-100', 'text-green-700');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>else messageBox.classList.add('bg-yellow-100', 'text-yellow-700');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageBox.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (duration &gt; 0) setTimeout(() =&gt; messageBox.classList.add('hidden'), duration);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Speech Synthesis Functions ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function initializeSpeech() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!('speechSynthesis' in window)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Speech synthesis not supported.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Speech not supported on this device.", 'error', 0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("This device does not support speech synthesis.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>synth = window.speechSynthesis;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const loadVoices = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>voices = synth.getVoices();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (voices.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log(`Voices loaded: ${voices.length} available.`);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>isSpeechReady = true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showMessage("Speech ready!", 'success', 2000);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.warn("No voices loaded yet.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>synth.onvoiceschanged = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("Voices changed event fired.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadVoices();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadVoices();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// iPad Safari fix: Retry voice loading</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let attempts = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const maxAttempts = 5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const voiceCheckInterval = setInterval(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>voices = synth.getVoices();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (voices.length &gt; 0 || attempts &gt;= maxAttempts) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (voices.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>console.log("Voices loaded after interval.");</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>isSpeechReady = true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>console.warn("No voices after max attempts. Using default.");</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>isSpeechReady = true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>clearInterval(voiceCheckInterval);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>attempts++;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function speakText(text) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!synth) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Speech synthesis not initialized.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Speech not ready. Initializing...", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>initializeSpeech();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!isSpeakingAllowed) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("First interaction detected. Enabling speech.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>isSpeakingAllowed = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Tap again to speak.", 'info');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (synth.speaking) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("Already speaking. Cancelling current speech.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>synth.cancel();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!text) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("No text to speak.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log(`Speaking: "${text}"`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const utterance = new SpeechSynthesisUtterance(text);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>voices = synth.getVoices();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const englishVoice = voices.find(voice =&gt; voice.lang.startsWith('en') &amp;&amp; voice.default) ||</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>voices.find(voice =&gt; voice.lang.startsWith('en')) ||</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>voices[0];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (englishVoice) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>utterance.voice = englishVoice;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log(`Voice: ${englishVoice.name} (${englishVoice.lang})`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.warn("No English voice. Using default.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.volume = 1.0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.rate = 1.0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.pitch = 1.0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.onstart = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log(`Started: "${text}"`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage(`Speaking: ${text}`, 'success', 2000);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.onend = () =&gt; console.log(`Finished: "${text}"`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.onerror = (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error(`Speech error: ${e.error}`, e);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage(`Speech failed: ${e.error}`, 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert(`Speech failed with error: ${e.error}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>synth.speak(utterance);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error in synth.speak:", e);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Could not play speech.", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("Could not play speech. Check settings or try another browser.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Text Contrast Helper ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function getContrastYIQ(hexcolor) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>hexcolor = hexcolor.replace("#", "");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const r = parseInt(hexcolor.substr(0,2),16);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const g = parseInt(hexcolor.substr(2,2),16);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const b = parseInt(hexcolor.substr(4,2),16);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const yiq = ((r*299)+(g*587)+(b*114))/1000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (yiq &gt;= 128) ? '#000000' : '#ffffff';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- UI Generation Functions ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function loadModulePhrases() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const module = modules[currentModuleIndex];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!module) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error(`Invalid module index: ${currentModuleIndex}`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentModuleIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadModulePhrases();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log(`Loading module: ${module.name}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mainContent.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (module.isSpecial) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mainContent.className = 'main-content grid-cols-1 md:grid-cols-2';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const yesButton = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yesButton.className = 'yes-no-button pressable';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yesButton.style.backgroundColor = '#22c55e';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yesButton.dataset.speak = "Yes";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yesButton.innerHTML = `&lt;span class="text-4xl md:text-6xl font-semibold"&gt;Yes&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yesButton.addEventListener('click', handlePhraseButtonClick);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>yesButton.addEventListener('touchstart', handlePhraseButtonClick);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mainContent.appendChild(yesButton);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const noButton = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noButton.className = 'yes-no-button pressable';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noButton.style.backgroundColor = '#ef4444';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noButton.dataset.speak = "No";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noButton.innerHTML = `&lt;span class="text-4xl md:text-6xl font-semibold"&gt;No&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noButton.addEventListener('click', handlePhraseButtonClick);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noButton.addEventListener('touchstart', handlePhraseButtonClick);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mainContent.appendChild(noButton);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const numPhrases = module.phrases.length;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mainContent.className = `main-content grid-cols-2`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (numPhrases === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>mainContent.innerHTML = `&lt;p class="col-span-full text-center text-gray-500 p-10"&gt;This module is empty. Edit it to add phrases.&lt;/p&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>module.phrases.forEach(phrase =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const button = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const bgColor = phrase.color || defaultPhraseColor;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const textColor = getContrastYIQ(bgColor);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.className = `phrase-button pressable`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.style.backgroundColor = bgColor;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.style.color = textColor;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.dataset.speak = phrase.text;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.innerHTML = `&lt;span class="text-xl sm:text-2xl md:text-3xl font-bold"&gt;${phrase.text}&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.addEventListener('click', handlePhraseButtonClick);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.addEventListener('touchstart', handlePhraseButtonClick);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>mainContent.appendChild(button);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateActiveModuleButton();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function populateModuleList() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>moduleListContainer.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modules.forEach((module, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const button = document.createElement('button');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.className = 'module-button pressable';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.dataset.moduleIndex = index;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const nameSpan = document.createElement('span');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>nameSpan.className = 'module-name';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>nameSpan.innerHTML = `&lt;span&gt;Module: &lt;/span&gt;&lt;span&gt;${module.name}&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.appendChild(nameSpan);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!module.isSpecial) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const editIcon = document.createElement('span');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editIcon.className = 'edit-icon';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editIcon.textContent = 'Edit';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editIcon.addEventListener('click', (e) =&gt; { e.stopPropagation(); openEditModal(index); });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editIcon.addEventListener('touchstart', (e) =&gt; { e.stopPropagation(); openEditModal(index); });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.appendChild(editIcon);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', () =&gt; { currentModuleIndex = index; loadModulePhrases(); });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('touchstart', () =&gt; { currentModuleIndex = index; loadModulePhrases(); });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>moduleListContainer.appendChild(button);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateActiveModuleButton();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateActiveModuleButton() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const buttons = moduleListContainer.querySelectorAll('.module-button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>buttons.forEach(btn =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (parseInt(btn.dataset.moduleIndex) === currentModuleIndex) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>btn.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>btn.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Modal Functions ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function openEditModal(index = null) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (index !== null &amp;&amp; modules[index].isSpecial) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("The 'Yes / No' module cannot be edited.", 'info');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const isNewModule = index === null;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const module = isNewModule ? { name: "", phrases: [] } : modules[index];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalTitle.textContent = isNewModule ? "Add New Module" : "Edit Module";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalModuleIndexInput.value = isNewModule ? "" : index;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalModuleNameInput.value = module.name;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalPhrasesContainer.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; 4; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const phrase = module.phrases[i];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const phraseText = phrase ? phrase.text : "";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const phraseColor = phrase ? (phrase.color || defaultPhraseColor) : defaultPhraseColor;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const inputDiv = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>inputDiv.className = 'modal-phrase-input';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>inputDiv.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-gray-500 w-6 text-right"&gt;${i + 1}.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="modal-input !mb-0" placeholder="Enter phrase ${i + 1}" value="${phraseText}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="color" class="modal-color-input" value="${phraseColor}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modalPhrasesContainer.appendChild(inputDiv);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalDeleteButton.classList.toggle('hidden', isNewModule);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>editModal.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function closeEditModal() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>editModal.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function saveModuleChanges() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const index = modalModuleIndexInput.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const moduleName = modalModuleNameInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!moduleName) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Module name cannot be empty.", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const phraseInputContainers = modalPhrasesContainer.querySelectorAll('.modal-phrase-input');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const newPhrases = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>phraseInputContainers.forEach(container =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const textInput = container.querySelector('input[type="text"]');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const colorInput = container.querySelector('input[type="color"]');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const text = textInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const color = colorInput.value;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (text) newPhrases.push({ text: text, color: color });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (index === "") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modules.push({ name: moduleName, isSpecial: false, phrases: newPhrases });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentModuleIndex = modules.length - 1;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Module added successfully.", 'success');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const moduleIndex = parseInt(index);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (isNaN(moduleIndex) || moduleIndex &lt; 0 || moduleIndex &gt;= modules.length || modules[moduleIndex].isSpecial) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showMessage("Error saving module.", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>closeEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modules[moduleIndex].name = moduleName;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modules[moduleIndex].phrases = newPhrases;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentModuleIndex = moduleIndex;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Module updated successfully.", 'success');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveModulesToLocalStorage();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>populateModuleList();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadModulePhrases();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>closeEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function deleteModule() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const index = parseInt(modalModuleIndexInput.value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (isNaN(index) || index &lt; 0 || index &gt;= modules.length || modules[index].isSpecial) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Cannot delete this module.", 'error');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (confirm(`Are you sure you want to delete "${modules[index].name}"?`)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modules.splice(index, 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveModulesToLocalStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentModuleIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>populateModuleList();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadModulePhrases();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>closeEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessage("Module deleted.", 'success');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Event Handlers ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handlePhraseButtonClick(event) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>event.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!isSpeakingAllowed) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("First interaction. Enabling speech.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>isSpeakingAllowed = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>initializeSpeech();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const button = event.currentTarget;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const textToSpeak = button.dataset.speak;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log(`Button pressed: "${textToSpeak}"`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>speakText(textToSpeak);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Initial Setup ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log("Initializing Communication Aid...");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadModulesFromLocalStorage();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>populateModuleList();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadModulePhrases();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>initializeSpeech();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.body.addEventListener('touchstart', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!isSpeakingAllowed) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log("Touch detected. Enabling speech.");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>isSpeakingAllowed = true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>initializeSpeech();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, { once: true });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>addModuleButton.addEventListener('click', () =&gt; openEditModal(null));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>addModuleButton.addEventListener('touchstart', () =&gt; openEditModal(null));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalCloseButton.addEventListener('click', closeEditModal);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalCloseButton.addEventListener('touchstart', closeEditModal);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalSaveButton.addEventListener('click', saveModuleChanges);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalSaveButton.addEventListener('touchstart', saveModuleChanges);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalDeleteButton.addEventListener('click', deleteModule);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalDeleteButton.addEventListener('touchstart', deleteModule);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>editModal.addEventListener('click', (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (event.target === editModal) closeEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>editModal.addEventListener('touchstart', (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (event.target === editModal) closeEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showMessage("Tap a phrase to begin.", 'info', 5000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
